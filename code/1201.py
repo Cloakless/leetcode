@@ -13,7 +13,7 @@ class Solution:
                 tot += m // triple
             return tot
         lower = 1
-        upper = a*b*c
+        upper = 2 * 10**9
         if uglyCount(lower) == n:
             return lower
         if uglyCount(upper) == n:
