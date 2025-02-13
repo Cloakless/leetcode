@@ -1,13 +1,12 @@
 class Solution:
-    import heapq
     def minOperations(self, nums: List[int], k: int) -> int:
-        heapq.heapify(nums)
+        num_heap = []
+        for num in nums:
+            heappush(num_heap, num)
         ops = 0
-        while True:
-            x = heapq.heappop(nums)
-            if x >= k:
-                return ops
-            else:
-                ops += 1
-            y = heapq.heappop(nums)
-            heapq.heappush(nums, min(x, y) * 2 + max(x, y))
+        while len(num_heap) > 1 and num_heap[0] < k:
+            x = heappop(num_heap)
+            y = heappop(num_heap)
+            heappush(num_heap, min(x,y)*2 + max(x,y))
+            ops += 1
+        return ops
